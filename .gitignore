@@ -3,4 +3,7 @@
 .venv/
 venv/
 __pycache__/
+.data/
+.assets/
 demo.ipynb
+main.py
