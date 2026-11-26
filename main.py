@@ -1,12 +1,16 @@
 import torch
-from diffusers import DiffusionPipeline
+from diffusers import StableDiffusionPipeline
 
-pipeline = DiffusionPipeline.from_pretrained(
-  "Qwen/Qwen-Image", dtype=torch.bfloat16, device_map="cuda"  # or "mps", "xpu", "cpu"
+model_id = "stable-diffusion-v1-5/stable-diffusion-v1-5"
+
+pipe = StableDiffusionPipeline.from_pretrained(
+    model_id, 
+    dtype=torch.float16
 )
+pipe = pipe.to("cuda")
 
-prompt = """
+prompt1 = """
 cinematic film still of a cat sipping a margarita in a pool in Palm Springs, California
 highly detailed, high budget hollywood movie, cinemascope, moody, epic, gorgeous, film grain
 """
-pipeline(prompt).images[0]
+pipe(prompt1).images[0]
